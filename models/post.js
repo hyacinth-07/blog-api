@@ -32,4 +32,4 @@ PostSchema.virtual('url').get(function () {
 	return `/post/${this._id}`;
 });
 
-modules.exports = mongoose.model('Post', PostSchema);
+module.exports = mongoose.model('Post', PostSchema);

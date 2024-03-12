@@ -27,4 +27,4 @@ const CommentSchema = new Schema({
 // add a virtual url like
 // post/${postAttached._id}/${this._id}
 
-modules.exports = mongoose.model('Comment', CommentSchema);
+module.exports = mongoose.model('Comment', CommentSchema);
