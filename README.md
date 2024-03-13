@@ -16,4 +16,6 @@ SYSTEM
 - Test the schemas by manually adding some stuff
 - Talk to front end with API
   - Do something minimal in React
+  - including for to submit the whole thing
+  - let's take some time and not limit ourselves to postman
 - Create a second entry to actually publish posts and manage the website

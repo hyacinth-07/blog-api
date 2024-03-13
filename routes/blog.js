@@ -7,16 +7,32 @@ const userController = require('../controllers/userControllers');
 const postController = require('../controllers/postControllers');
 const commentController = require('../controllers/commentControllers');
 
-// routes
-// router.get('/', async (req, res) => {
-// 	try {
-// 		res.json({ message: 'Welcome to the Api blog' });
-// 	} catch (e) {
-// 		// error code 500 = generic server error
-// 		res.status(500).json({ message: e.message });
-// 	}
-// });
-
+// read all posts
 router.get('/', postController.home_page);
+
+// read single post
+router.get('/:id', postController.single_thread);
+
+// create new post
+router.post('/', postController.post_create);
+
+// delete post
+router.delete('/:id', postController.post_delete);
+
+// update post
+
+router.patch('/:id', postController.post_update);
+
+// read single comment
+
+router.get('/:comments/:commentId', commentController.single_comment);
+
+// add comment
+
+// delete comment
+
+router.delete('/comments/:id', commentController.comment_delete);
+
+// USER RELATED STUFF here
 
 module.exports = router;
