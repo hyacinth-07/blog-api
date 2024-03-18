@@ -20,17 +20,16 @@ router.post('/', postController.post_create);
 router.delete('/:id', postController.post_delete);
 
 // update post
-
 router.patch('/:id', postController.post_update);
 
 // read single comment
-
-router.get('/:comments/:commentId', commentController.single_comment);
+// really should work with a query
+router.get('/:postId/:commentId', commentController.single_comment);
 
 // add comment
+router.put('/:id', commentController.comment_add);
 
 // delete comment
-
 router.delete('/comments/:id', commentController.comment_delete);
 
 // USER RELATED STUFF here
