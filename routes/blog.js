@@ -15,6 +15,9 @@ router.get('/users/sign-up', userController.user_get);
 // create user
 router.post('/users/sign-up', userController.user_create);
 
+// authenticate user
+router.post('/users/log-in', userController.user_auth);
+
 // ROUTES
 
 // read all posts

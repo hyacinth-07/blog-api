@@ -3,12 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const blogRouter = require('./routes/blog');
 // cookies, sessions
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
-// var indexRouter = require('./routes/index');
-const blogRouter = require('./routes/blog');
+const passport = require('passport');
+const localStrategy = require('./strategies/local-strategy');
 
 var app = express();
 
@@ -16,6 +17,7 @@ var app = express();
 
 require('dotenv').config();
 const mongoose = require('mongoose');
+const { Strategy } = require('passport-local');
 const dbCredentials = process.env.MONGO_DB;
 
 connect();
@@ -56,6 +58,11 @@ app.use(
 		},
 	})
 );
+
+// call passport AFTER session
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // ROUTES
 

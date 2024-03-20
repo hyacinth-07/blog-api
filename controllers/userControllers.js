@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const passport = require('passport');
 
 exports.user_get = async (req, res, next) => {
 	try {
@@ -25,3 +26,5 @@ exports.user_create = async (req, res, next) => {
 		res.status(400).json({ message: e.message });
 	}
 };
+
+exports.user_auth = passport.authenticate('local');
