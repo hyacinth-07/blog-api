@@ -7,6 +7,16 @@ const userController = require('../controllers/userControllers');
 const postController = require('../controllers/postControllers');
 const commentController = require('../controllers/commentControllers');
 
+// USER RELATED STUFF here
+
+// list users
+router.get('/users/sign-up', userController.user_get);
+
+// create user
+router.post('/users/sign-up', userController.user_create);
+
+// ROUTES
+
 // read all posts
 router.get('/', postController.home_page);
 
@@ -31,7 +41,5 @@ router.put('/:id', commentController.comment_add);
 
 // delete comment
 router.delete('/comments/:id', commentController.comment_delete);
-
-// USER RELATED STUFF here
 
 module.exports = router;

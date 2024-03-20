@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// cookies, sessions
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 // var indexRouter = require('./routes/index');
 const blogRouter = require('./routes/blog');
@@ -36,6 +39,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// session connection
+// call BEFORE routes
+
+app.use(
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: false,
+		store: MongoStore.create({
+			mongoUrl: process.env.MONGO_DB,
+		}),
+		cookie: {
+			maxAge: 10000,
+		},
+	})
+);
+
+// ROUTES
 
 app.use('/', blogRouter);
 
