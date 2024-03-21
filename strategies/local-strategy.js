@@ -1,6 +1,7 @@
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const User = require('../models/user');
+const bcrypt = require('bcryptjs');
 
 passport.serializeUser((user, done) => {
 	done(null, user.id);
@@ -25,8 +26,9 @@ exports.localStrategy = passport.use(
 			if (!foundUser) {
 				throw new Error('User not found');
 			}
-			if (foundUser.password !== password) {
-				throw new Error("Credentials don't match");
+			const compareHash = await bcrypt.compare(password, foundUser.password);
+			if (!compareHash) {
+				throw new Error('Credentials do not match');
 			}
 			return done(null, foundUser);
 		} catch (e) {
