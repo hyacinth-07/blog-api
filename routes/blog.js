@@ -37,11 +37,12 @@ router.get('/users/status/', (req, res) => {
 
 // log out
 
-router.post('/users/log-out', (req, res) => {
-	if (!req.user) return res.sendStatus(401);
+router.get('/users/log-out', (req, res, next) => {
 	req.logout((err) => {
-		if (err) return res.sendStatus(401);
-		res.send(200);
+		if (err) {
+			return next(err);
+		}
+		res.sendStatus(200);
 	});
 });
 
