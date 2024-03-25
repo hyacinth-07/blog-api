@@ -9,7 +9,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
 const passport = require('passport');
-const localStrategy = require('./strategies/local-strategy');
 
 var app = express();
 
@@ -17,7 +16,6 @@ var app = express();
 
 require('dotenv').config();
 const mongoose = require('mongoose');
-const { Strategy } = require('passport-local');
 const dbCredentials = process.env.MONGO_DB;
 
 connect();
